@@ -43,7 +43,19 @@ fun ImagePost(post: PostModel) {
 
 @Composable
 fun Post(post: PostModel, content: @Composable () -> Unit = {}) {
-  //TODO add your code here
+  Card(shape = MaterialTheme.shapes.large){
+    Column(
+      modifier = Modifier.padding(
+        top = 8.dp, bottom = 8.dp
+      )
+    ){
+      Header(post)
+      Spacer(modifier = Modifier.height(4.dp))
+      content.invoke()
+      Spacer(modifier = Modifier.height(8.dp))
+      PostActions(post)
+    }
+  }
 }
 
 @Composable
@@ -175,19 +187,16 @@ fun PostActions(post: PostModel) {
     VotingAction(text = post.likes, onUpVoteAction = {}, onDownVoteAction = {})
     PostAction(
       vectorResourceId = R.drawable.ic_baseline_comment_24,
-      text = post.comments,
-      onClickAction = {}
-    )
+      text = post.comments
+    ) {}
     PostAction(
       vectorResourceId = R.drawable.ic_baseline_share_24,
-      text = stringResource(R.string.share),
-      onClickAction = {}
-    )
+      text = stringResource(R.string.share)
+    ) {}
     PostAction(
       vectorResourceId = R.drawable.ic_baseline_emoji_events_24,
-      text = stringResource(R.string.award),
-      onClickAction = {}
-    )
+      text = stringResource(R.string.award)
+    ) {}
   }
 }
 
